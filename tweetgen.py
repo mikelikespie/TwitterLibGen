@@ -77,8 +77,9 @@ def validate(params, valid_methods, args, kwargs):
 
     if len(args) + len(kwargs) > len(optional_params) + len(required_params):
         raise ValueError("Too many arguments. Got %s. Requires <= %s.\nParams are (%s)" %
-                (len(args) + len(kwargs), len(optional_params) + len(required_params),
-                    make_prototype(required_params, optional_params)))
+                (len(args) + len(kwargs),
+                 len(optional_params) + len(required_params),
+                 make_prototype(required_params, optional_params)))
 
     #zip together the args in the order we got the list
     new_args = dict(zip(required_params + optional_params, args))
@@ -122,15 +123,10 @@ def validate(params, valid_methods, args, kwargs):
     if 'method' in new_args:
         method = new_args['method']
         if method not in valid_methods:
-            raise ValueError("%s is not a valid method. valid ones are (%s)" % (method, ','.join(md['methods'])))
+            raise ValueError("%s is not a valid method. valid ones are (%s)" %
+                    (method, ','.join(md['methods'])))
 
     return new_args
-
-
-
-
-
-
 
 
 
@@ -154,7 +150,9 @@ def genmethod(md):
         
         if requires_auth is True:
             if not self.opener.authorize:
-                raise NeedAuthException("%s requires authorization and %s does not support it" % (name, str(self.opener)))
+                raise NeedAuthException(
+                        "%s requires authorization and %s does not support it" % 
+                            (name, str(self.opener)))
 
         return self.dispatch(method, name, all_args)
     
