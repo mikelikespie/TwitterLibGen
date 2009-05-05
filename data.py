@@ -1,0 +1,71 @@
+methods = [
+        {'name':'statuses/user_timeline',
+         'methods':['GET'],
+         'limit':1,
+         'requires_auth':'user_based',
+         'response':{
+             'object':'status',
+             'cardinality':'n'},
+         'parameters':[
+             {
+                 'name':'id',
+                 'required':False},
+             {   
+                 'name':'user_id',
+                 'required':False,
+                 'type':'int'},
+             {
+                 'name':'count',
+                 'required':False,
+                 'type':'int',
+                 'min':1,
+                 'max':200},
+             {
+                 'name':'page',
+                 'required':False,
+                 'type':'int',
+                 'min':1} ]
+             },
+        {'name':'users/show',
+         'methods':['GET'],
+         'requires_auth':'user_based',
+         'response':{
+             'object':'user',
+             'cardinality':1},
+         'parameters':[
+             {
+                 'name':'id',
+                 'required':False},
+             {   
+                 'name':'user_id',
+                 'required':False,
+                 'type':'int'},
+             {
+                 'name':'screen_name',
+                 'required':False} ]
+             },
+        {'name':'statuses/followers',
+         'methods':['GET'],
+         'requires_auth':True,
+         'response':{
+             'object':'user',
+             'cardinality':'n'},
+         'parameters':[
+             {
+                 'name':'id',
+                 'required':False},
+             {   
+                 'name':'user_id',
+                 'required':False,
+                 'type':'int'},
+             {
+                 'name':'page',
+                 'required':False,
+                 'type':'int',
+                 'min':1} ,
+             {
+                 'name':'screen_name',
+                 'required':False} ]
+             }
+        ]
+
