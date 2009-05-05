@@ -157,8 +157,10 @@ def genmethod(md):
                 raise NeedAuthException("%s requires authorization and %s does not support it" % (name, str(self.opener)))
 
         return self.dispatch(method, name, all_args)
-
+    
     normal_name = name.replace('/', '_')
+
+    func.__name__ = normal_name
 
     return normal_name, func
 
